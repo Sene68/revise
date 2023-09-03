@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -12,4 +15,12 @@ import lombok.Setter;
 public class ItemData {
     private String itemName;
     private String itemCode;
+
+
+    @NoArgsConstructor
+    public static class ItemListRes extends ApiResponse<List<ItemData>> implements Serializable {
+        public ItemListRes(int status, String error, List<ItemData> list) {
+            super(status, error, list);
+        }
+    }
 }
