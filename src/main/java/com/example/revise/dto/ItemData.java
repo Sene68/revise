@@ -16,6 +16,12 @@ public class ItemData {
     private String itemName;
     private String itemCode;
 
+    @NoArgsConstructor
+    public static class ItemObjRes extends ApiResponse<ItemData> implements Serializable {
+        public ItemObjRes(int status, String error, ItemData data) {
+            super(status, error, data);
+        }
+    }
 
     @NoArgsConstructor
     public static class ItemListRes extends ApiResponse<List<ItemData>> implements Serializable {

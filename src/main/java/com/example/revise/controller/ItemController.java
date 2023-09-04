@@ -3,6 +3,7 @@ package com.example.revise.controller;
 import com.example.revise.dto.ApiResponse;
 import com.example.revise.dto.ItemData;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -22,5 +23,13 @@ public class ItemController {
         items.add(item2);
 
         return new ItemData.ItemListRes(ApiResponse.OK, null, items);
+    }
+
+    @GetMapping("/items/{id}")
+    public ItemData.ItemObjRes item(@PathVariable int id) {
+
+        ItemData item1 = new ItemData("item1", "001");
+
+        return new ItemData.ItemObjRes(ApiResponse.OK, null, item1);
     }
 }
