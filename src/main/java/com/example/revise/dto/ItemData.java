@@ -15,6 +15,7 @@ import java.util.List;
 public class ItemData {
     private String itemName;
     private String itemCode;
+    private int version;
 
     @NoArgsConstructor
     public static class ItemObjRes extends ApiResponse<ItemData> implements Serializable {
