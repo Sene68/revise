@@ -19,13 +19,7 @@ public class ItemController {
 
     @GetMapping("/items")
     public ItemData.ItemListRes items() {
-        List<ItemData> items = new ArrayList<>();
-
-        ItemData item1 = new ItemData("item1", "001", 1);
-        ItemData item2 = new ItemData("item2", "002", 1);
-
-        items.add(item1);
-        items.add(item2);
+        List<ItemData> items = itemService.getItems();
 
         return new ItemData.ItemListRes(ApiResponse.OK, null, items);
     }
