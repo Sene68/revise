@@ -13,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ItemData {
+    private int id;
     private String itemName;
     private String itemCode;
     private int version;

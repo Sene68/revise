@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -27,7 +26,7 @@ public class ItemController {
     @GetMapping("/items/{id}")
     public ItemData.ItemObjRes item(@PathVariable int id) {
 
-        ItemData item1 = itemService.getItem();
+        ItemData item1 = itemService.getItem(id);
 
         return new ItemData.ItemObjRes(ApiResponse.OK, null, item1);
     }
