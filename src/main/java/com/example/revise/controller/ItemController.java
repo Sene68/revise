@@ -6,6 +6,7 @@ import com.example.revise.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -29,5 +30,12 @@ public class ItemController {
         ItemData item1 = itemService.getItem(id);
 
         return new ItemData.ItemObjRes(ApiResponse.OK, null, item1);
+    }
+
+    @PostMapping("/items/add")
+    public ItemData.ItemCustomRes<String> addItem() {
+        itemService.addItem();
+
+        return new ItemData.ItemCustomRes<>(ApiResponse.OK, null, "OK");
     }
 }

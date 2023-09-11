@@ -31,4 +31,9 @@ public class ItemData {
             super(status, error, list);
         }
     }
+
+    @NoArgsConstructor
+    public static class ItemCustomRes<T> extends ApiResponse<T> {
+        public ItemCustomRes(int status, String error, T data) { super(status, error, data); }
+    }
 }
