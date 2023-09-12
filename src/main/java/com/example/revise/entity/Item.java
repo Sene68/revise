@@ -1,5 +1,6 @@
 package com.example.revise.entity;
 
+import com.example.revise.dto.ItemData;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -14,6 +15,13 @@ import lombok.Setter;
 @Getter @Setter
 @Table(name = "item")
 public class Item {
+
+    public static Item of(ItemData.AddItemParam param) {
+        String itemName = param.getItemName();
+        String itemCode = param.getItemCode();
+
+        return Item.builder().itemName(itemName).itemCode(itemCode).version(1).build();
+    }
 
     @Builder
     public Item(String itemName, String itemCode, int version) {

@@ -43,8 +43,8 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public void addItem() {
-        Item item = Item.builder().itemName("item1").itemCode("001").version(1).build();
+    public void addItem(ItemData.AddItemParam param) {
+        Item item = Item.of(param);
 
         itemRepository.save(item);
     }

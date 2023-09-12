@@ -1,9 +1,6 @@
 package com.example.revise.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.List;
@@ -35,5 +32,14 @@ public class ItemData {
     @NoArgsConstructor
     public static class ItemCustomRes<T> extends ApiResponse<T> {
         public ItemCustomRes(int status, String error, T data) { super(status, error, data); }
+    }
+
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Builder
+    public static class AddItemParam {
+        private String itemName;
+        private String itemCode;
     }
 }

@@ -9,5 +9,5 @@ public interface ItemService {
 
     List<ItemData> getItems();
 
-    void addItem();
+    void addItem(ItemData.AddItemParam param);
 }
