@@ -22,7 +22,7 @@ public class ItemController {
     }
 
     @GetMapping("/items/{id}")
-    public ItemData.ItemObjRes item(@PathVariable int id) {
+    public ItemData.ItemObjRes item(@PathVariable long id) {
 
         ItemData item1 = itemService.getItem(id);
 

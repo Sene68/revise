@@ -5,7 +5,7 @@ import com.example.revise.dto.ItemData;
 import java.util.List;
 
 public interface ItemService {
-    ItemData getItem(int id);
+    ItemData getItem(long id);
 
     List<ItemData> getItems();
 

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ItemServiceImpl implements ItemService {
@@ -21,16 +22,10 @@ public class ItemServiceImpl implements ItemService {
     private ItemRepository itemRepository;
 
     @Override
-    public ItemData getItem(int id) {
-        List<ItemData> items = new ArrayList<>();
+    public ItemData getItem(long id) {
+        Item item = itemRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("item does not exist"));
 
-        ItemData item1 = new ItemData(1, "item1", "001", 1);
-        ItemData item2 = new ItemData(2, "item2", "002", 1);
-
-        items.add(item1);
-        items.add(item2);
-
-        return items.stream().filter(item -> item.getId() == id).findAny().orElse(null);
+        return convert(item, ItemData.class);
     }
 
     @Override
