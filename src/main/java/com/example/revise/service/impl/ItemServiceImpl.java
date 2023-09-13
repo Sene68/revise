@@ -4,6 +4,7 @@ import com.example.revise.dto.ItemData;
 import com.example.revise.entity.Item;
 import com.example.revise.repository.ItemRepository;
 import com.example.revise.service.ItemService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,9 @@ import java.util.List;
 
 @Service
 public class ItemServiceImpl implements ItemService {
+
+    @Autowired
+    private ModelMapper modelMapper;
 
     @Autowired
     private ItemRepository itemRepository;
@@ -31,15 +35,13 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public List<ItemData> getItems() {
-        List<ItemData> items = new ArrayList<>();
+        List<ItemData> itemDataList = new ArrayList<>();
 
-        ItemData item1 = new ItemData(1, "item1", "001", 1);
-        ItemData item2 = new ItemData(2, "item2", "002", 1);
+        List<Item> items = itemRepository.findAll();
 
-        items.add(item1);
-        items.add(item2);
+        items.forEach(item -> itemDataList.add(convert(item, ItemData.class)));
 
-        return items;
+        return itemDataList;
     }
 
     @Override
@@ -47,5 +49,9 @@ public class ItemServiceImpl implements ItemService {
         Item item = Item.of(param);
 
         itemRepository.save(item);
+    }
+
+    private <T, E> T convert(E e, Class<T> tClass) {
+        return modelMapper.map(e, tClass);
     }
 }
