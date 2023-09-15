@@ -46,6 +46,21 @@ public class ItemServiceImpl implements ItemService {
         itemRepository.save(item);
     }
 
+    private boolean duplicated(String itemCode) {
+        Item item = null;
+
+        try {
+            item = getItem(itemCode);
+        } catch (IllegalArgumentException ignored) {
+        }
+
+        return item != null;
+    }
+
+    private Item getItem(String itemCode) {
+        return itemRepository.findByItemCode(itemCode).orElseThrow(() -> new IllegalArgumentException("item does not exist"));
+    }
+
     private <T, E> T convert(E e, Class<T> tClass) {
         return modelMapper.map(e, tClass);
     }
