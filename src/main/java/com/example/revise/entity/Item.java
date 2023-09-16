@@ -1,6 +1,7 @@
 package com.example.revise.entity;
 
 import com.example.revise.dto.ItemData;
+import com.example.revise.enums.ItemStatus;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -15,25 +16,19 @@ import lombok.NoArgsConstructor;
 @Table(name = "item")
 public class Item {
 
-    public static Item of(ItemData.AddItemParam param) {
-        String itemName = param.getItemName();
-        String itemCode = param.getItemCode();
-
-        return Item.builder().itemName(itemName).itemCode(itemCode).version(1).build();
-    }
-
     public static Item revise(ItemData.AddItemParam param, int version) {
         String itemName = param.getItemName();
         String itemCode = param.getItemCode();
 
-        return Item.builder().itemName(itemName).itemCode(itemCode).version(version).build();
+        return Item.builder().itemName(itemName).itemCode(itemCode).version(version).itemStatus(ItemStatus.ACTIVE).build();
     }
 
     @Builder
-    public Item(String itemName, String itemCode, int version) {
+    public Item(String itemName, String itemCode, int version, ItemStatus itemStatus) {
         this.itemName = itemName;
         this.itemCode = itemCode;
         this.version = version;
+        this.itemStatus = itemStatus;
     }
 
     @Id
@@ -45,5 +40,7 @@ public class Item {
     private String itemCode;
 
     private int version;
+
+    private ItemStatus itemStatus;
 
 }
