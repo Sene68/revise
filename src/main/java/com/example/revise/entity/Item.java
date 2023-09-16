@@ -8,11 +8,10 @@ import jakarta.persistence.Table;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @NoArgsConstructor
-@Getter @Setter
+@Getter
 @Table(name = "item")
 public class Item {
 
@@ -21,6 +20,13 @@ public class Item {
         String itemCode = param.getItemCode();
 
         return Item.builder().itemName(itemName).itemCode(itemCode).version(1).build();
+    }
+
+    public static Item revise(ItemData.AddItemParam param, int version) {
+        String itemName = param.getItemName();
+        String itemCode = param.getItemCode();
+
+        return Item.builder().itemName(itemName).itemCode(itemCode).version(version).build();
     }
 
     @Builder
@@ -39,4 +45,5 @@ public class Item {
     private String itemCode;
 
     private int version;
+
 }

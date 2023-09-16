@@ -7,10 +7,10 @@ import com.example.revise.service.ItemService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ItemServiceImpl implements ItemService {
@@ -41,12 +41,23 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public void addItem(ItemData.AddItemParam param) {
-        Item item = Item.of(param);
+        Assert.notNull(param, "item must be not null");
+        Item item = duplicated(param.getItemCode());
 
-        itemRepository.save(item);
+        int version = 1;
+
+        if (item != null)
+            version = item.getVersion() + 1;
+
+        try {
+            Item newItem = Item.revise(param, version);
+            itemRepository.save(newItem);
+        } catch (Exception e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
     }
 
-    private boolean duplicated(String itemCode) {
+    private Item duplicated(String itemCode) {
         Item item = null;
 
         try {
@@ -54,7 +65,7 @@ public class ItemServiceImpl implements ItemService {
         } catch (IllegalArgumentException ignored) {
         }
 
-        return item != null;
+        return item;
     }
 
     private Item getItem(String itemCode) {
