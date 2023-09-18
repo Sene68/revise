@@ -43,4 +43,8 @@ public class Item {
 
     private ItemStatus itemStatus;
 
+
+    public void active() { this.itemStatus = ItemStatus.ACTIVE; }
+    public void inactive() { this.itemStatus = ItemStatus.INACTIVE; }
+
 }
