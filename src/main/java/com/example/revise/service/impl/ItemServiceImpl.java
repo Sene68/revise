@@ -2,6 +2,7 @@ package com.example.revise.service.impl;
 
 import com.example.revise.dto.ItemData;
 import com.example.revise.entity.Item;
+import com.example.revise.enums.ItemStatus;
 import com.example.revise.repository.ItemRepository;
 import com.example.revise.service.ItemService;
 import org.modelmapper.ModelMapper;
@@ -50,6 +51,8 @@ public class ItemServiceImpl implements ItemService {
             version = item.getVersion() + 1;
 
         try {
+            inactiveItems(param.getItemCode());
+
             Item newItem = Item.revise(param, version);
             itemRepository.save(newItem);
         } catch (Exception e) {
@@ -70,6 +73,14 @@ public class ItemServiceImpl implements ItemService {
 
     private Item getItem(String itemCode) {
         return itemRepository.findByItemCode(itemCode).orElseThrow(() -> new IllegalArgumentException("item does not exist"));
+    }
+
+    private void inactiveItems(String itemCode) {
+        try {
+            List<Item> items = itemRepository.findAllByItemCodeAndItemStatus(itemCode, ItemStatus.ACTIVE).orElseThrow(() -> new IllegalArgumentException("item does not exist"));
+            items.forEach(Item::inactive);
+        } catch (Exception ignored) {
+        }
     }
 
     private <T, E> T convert(E e, Class<T> tClass) {
