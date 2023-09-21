@@ -24,9 +24,9 @@ public class ItemController {
     @GetMapping("/items/{id}")
     public ItemData.ItemObjRes item(@PathVariable long id) {
 
-        ItemData item1 = itemService.getItem(id);
+        ItemData item = itemService.getItem(id);
 
-        return new ItemData.ItemObjRes(ApiResponse.OK, null, item1);
+        return new ItemData.ItemObjRes(ApiResponse.OK, null, item);
     }
 
     @PostMapping("/items/add")
