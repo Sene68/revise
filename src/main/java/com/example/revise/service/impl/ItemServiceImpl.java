@@ -60,6 +60,10 @@ public class ItemServiceImpl implements ItemService {
         }
     }
 
+    private void deleteItem(Item item) {
+        item.inactive();
+    }
+
     private Item duplicated(String itemCode) {
         Item item = null;
 
