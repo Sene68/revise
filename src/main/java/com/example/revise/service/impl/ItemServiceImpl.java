@@ -60,6 +60,10 @@ public class ItemServiceImpl implements ItemService {
         }
     }
 
+    private Item getLatestItem(String itemCode) {
+        return itemRepository.findByItemCodeAndItemStatus(itemCode, ItemStatus.ACTIVE).orElseThrow(() -> new IllegalArgumentException("item does not exist"));
+    }
+
     private void deleteItem(Item item) {
         item.inactive();
     }
