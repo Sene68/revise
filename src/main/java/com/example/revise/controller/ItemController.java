@@ -21,10 +21,10 @@ public class ItemController {
         return new ItemData.ItemListRes(ApiResponse.OK, null, items);
     }
 
-    @GetMapping("/items/{id}")
-    public ItemData.ItemObjRes item(@PathVariable long id) {
+    @GetMapping("/items/{itemCode}")
+    public ItemData.ItemObjRes item(@PathVariable String itemCode) {
 
-        ItemData item = itemService.getItem(id);
+        ItemData item = itemService.getItem(itemCode);
 
         return new ItemData.ItemObjRes(ApiResponse.OK, null, item);
     }

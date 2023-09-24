@@ -6,7 +6,7 @@ import com.example.revise.entity.Item;
 import java.util.List;
 
 public interface ItemService {
-    ItemData getItem(long id);
+    ItemData getItem(String itemCode);
 
     List<ItemData> getItems();
 

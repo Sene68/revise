@@ -23,8 +23,8 @@ public class ItemServiceImpl implements ItemService {
     private ItemRepository itemRepository;
 
     @Override
-    public ItemData getItem(long id) {
-        Item item = itemRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("item does not exist"));
+    public ItemData getItem(String itemCode) {
+        Item item = getLatestItem(itemCode);
 
         return convert(item, ItemData.class);
     }
@@ -72,15 +72,11 @@ public class ItemServiceImpl implements ItemService {
         Item item = null;
 
         try {
-            item = getItem(itemCode);
+            item = getLatestItem(itemCode);
         } catch (IllegalArgumentException ignored) {
         }
 
         return item;
-    }
-
-    private Item getItem(String itemCode) {
-        return itemRepository.findByItemCode(itemCode).orElseThrow(() -> new IllegalArgumentException("item does not exist"));
     }
 
     private void inactiveItems(String itemCode) {
