@@ -33,7 +33,7 @@ public class ItemServiceImpl implements ItemService {
     public List<ItemData> getItems() {
         List<ItemData> itemDataList = new ArrayList<>();
 
-        List<Item> items = itemRepository.findAll();
+        List<Item> items = itemRepository.findAllByItemStatus(ItemStatus.ACTIVE).orElseThrow(() -> new IllegalArgumentException("items does not exist"));
 
         items.forEach(item -> itemDataList.add(convert(item, ItemData.class)));
 
