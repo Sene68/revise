@@ -64,7 +64,7 @@ public class ItemServiceImpl implements ItemService {
         return itemRepository.findByItemCodeAndItemStatus(itemCode, ItemStatus.ACTIVE).orElseThrow(() -> new IllegalArgumentException("item does not exist"));
     }
 
-    private void deleteItem(Item item) {
+    private void inactiveReleaseItem(Item item) {
         item.inactive();
     }
 
