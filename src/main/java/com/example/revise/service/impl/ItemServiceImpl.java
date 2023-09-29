@@ -47,12 +47,12 @@ public class ItemServiceImpl implements ItemService {
 
         int version = 1;
 
-        if (item != null)
+        if (item != null) {
             version = item.getVersion() + 1;
+            inactiveReleaseItem(item);
+        }
 
         try {
-            inactiveItems(param.getItemCode());
-
             Item newItem = Item.revise(param, version);
             itemRepository.save(newItem);
         } catch (Exception e) {
