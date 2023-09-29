@@ -79,14 +79,6 @@ public class ItemServiceImpl implements ItemService {
         return item;
     }
 
-    private void inactiveItems(String itemCode) {
-        try {
-            List<Item> items = itemRepository.findAllByItemCodeAndItemStatus(itemCode, ItemStatus.ACTIVE).orElseThrow(() -> new IllegalArgumentException("item does not exist"));
-            items.forEach(Item::inactive);
-        } catch (Exception ignored) {
-        }
-    }
-
     private <T, E> T convert(E e, Class<T> tClass) {
         return modelMapper.map(e, tClass);
     }
