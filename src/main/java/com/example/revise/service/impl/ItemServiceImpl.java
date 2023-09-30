@@ -79,6 +79,10 @@ public class ItemServiceImpl implements ItemService {
         return item;
     }
 
+    private void reviseItem(Item item) {
+        item.active();
+    }
+
     private <T, E> T convert(E e, Class<T> tClass) {
         return modelMapper.map(e, tClass);
     }
