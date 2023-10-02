@@ -20,7 +20,7 @@ public class Item {
         String itemName = param.getItemName();
         String itemCode = param.getItemCode();
 
-        return Item.builder().itemName(itemName).itemCode(itemCode).version(version).itemStatus(ItemStatus.ACTIVE).build();
+        return Item.builder().itemName(itemName).itemCode(itemCode).version(version).itemStatus(ItemStatus.RELEASE).build();
     }
 
     @Builder
@@ -44,7 +44,7 @@ public class Item {
     private ItemStatus itemStatus;
 
 
-    public void active() { this.itemStatus = ItemStatus.ACTIVE; }
+    public void active() { this.itemStatus = ItemStatus.RELEASE; }
     public void inactive() { this.itemStatus = ItemStatus.INACTIVE; }
 
 }

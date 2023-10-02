@@ -33,7 +33,7 @@ public class ItemServiceImpl implements ItemService {
     public List<ItemData> getItems() {
         List<ItemData> itemDataList = new ArrayList<>();
 
-        List<Item> items = itemRepository.findAllByItemStatus(ItemStatus.ACTIVE).orElseThrow(() -> new IllegalArgumentException("items does not exist"));
+        List<Item> items = itemRepository.findAllByItemStatus(ItemStatus.RELEASE).orElseThrow(() -> new IllegalArgumentException("items does not exist"));
 
         items.forEach(item -> itemDataList.add(convert(item, ItemData.class)));
 
@@ -61,7 +61,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     private Item getLatestItem(String itemCode) {
-        return itemRepository.findByItemCodeAndItemStatus(itemCode, ItemStatus.ACTIVE).orElseThrow(() -> new IllegalArgumentException("item does not exist"));
+        return itemRepository.findByItemCodeAndItemStatus(itemCode, ItemStatus.RELEASE).orElseThrow(() -> new IllegalArgumentException("item does not exist"));
     }
 
     private void inactiveReleaseItem(Item item) {
