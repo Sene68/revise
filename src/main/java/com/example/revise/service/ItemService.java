@@ -11,4 +11,6 @@ public interface ItemService {
     List<ItemData> getItems();
 
     void addItem(ItemData.AddItemParam param);
+
+    void reviseItem(ItemData.ReviseItemParam param);
 }

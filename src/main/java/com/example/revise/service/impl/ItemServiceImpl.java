@@ -60,6 +60,21 @@ public class ItemServiceImpl implements ItemService {
         }
     }
 
+    @Override
+    public void reviseItem(ItemData.ReviseItemParam param) {
+        Assert.notNull(param, "item must be not null");
+
+        try {
+            Item latestItem = getLatestItem(param.getItemCode());
+            inactiveReleaseItem(latestItem);
+
+            Item releaseItem = getReleasedItem(param.getItemCode(), param.getVersion());
+            reviseItem(releaseItem);
+        } catch (Exception e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
+    }
+
     private Item getLatestItem(String itemCode) {
         return itemRepository.findByItemCodeAndItemStatus(itemCode, ItemStatus.RELEASE).orElseThrow(() -> new IllegalArgumentException("item does not exist"));
     }
@@ -81,6 +96,10 @@ public class ItemServiceImpl implements ItemService {
 
     private void reviseItem(Item item) {
         item.active();
+    }
+
+    private Item getReleasedItem(String itemCode, int version) {
+        return itemRepository.findByItemCodeAndVersion(itemCode, version).orElseThrow(() -> new IllegalArgumentException("item does not exist"));
     }
 
     private <T, E> T convert(E e, Class<T> tClass) {
