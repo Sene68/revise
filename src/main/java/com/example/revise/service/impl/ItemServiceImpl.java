@@ -75,6 +75,10 @@ public class ItemServiceImpl implements ItemService {
         }
     }
 
+    private List<Item> getItemHistory(String itemCode) {
+        return itemRepository.findAllByItemCode(itemCode).orElseThrow(() -> new IllegalArgumentException("item does not exist"));
+    }
+
     private Item getLatestItem(String itemCode) {
         return itemRepository.findByItemCodeAndItemStatus(itemCode, ItemStatus.RELEASE).orElseThrow(() -> new IllegalArgumentException("item does not exist"));
     }
