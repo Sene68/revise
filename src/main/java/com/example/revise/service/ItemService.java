@@ -10,6 +10,8 @@ public interface ItemService {
 
     List<ItemData> getItems();
 
+    List<ItemData> getItemHistory(String itemCode);
+
     void addItem(ItemData.AddItemParam param);
 
     void reviseItem(ItemData.ReviseItemParam param);

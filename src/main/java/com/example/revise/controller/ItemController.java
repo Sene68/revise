@@ -29,6 +29,13 @@ public class ItemController {
         return new ItemData.ItemObjRes(ApiResponse.OK, null, item);
     }
 
+    @GetMapping("/items/{itemCode}/history")
+    public ItemData.ItemListRes itemHistory(@PathVariable String itemCode) {
+        List<ItemData> items = itemService.getItemHistory(itemCode);
+
+        return new ItemData.ItemListRes(ApiResponse.OK, null, items);
+    }
+
     @PostMapping("/items/add")
     public ItemData.ItemCustomRes<String> addItem(@RequestBody ItemData.AddItemParam param) {
         itemService.addItem(param);
