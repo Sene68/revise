@@ -94,6 +94,10 @@ public class ItemServiceImpl implements ItemService {
         item.inactive();
     }
 
+    private void workingItem(Item item) {
+        item.working();
+    }
+
     private Item duplicated(String itemCode) {
         Item item = null;
 
