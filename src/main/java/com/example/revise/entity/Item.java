@@ -16,6 +16,13 @@ import lombok.NoArgsConstructor;
 @Table(name = "item")
 public class Item {
 
+    public static Item of(ItemData.AddItemParam param) {
+        String itemName = param.getItemName();
+        String itemCode = param.getItemCode();
+
+        return Item.builder().itemName(itemName).itemCode(itemCode).version(1).itemStatus(ItemStatus.WORKING).build();
+    }
+
     public static Item revise(ItemData.AddItemParam param, int version) {
         String itemName = param.getItemName();
         String itemCode = param.getItemCode();
