@@ -45,10 +45,7 @@ public class ItemServiceImpl implements ItemService {
         Assert.notNull(param, "item must be not null");
         Item item = duplicated(param.getItemCode());
 
-        int version = 1;
-
         if (item != null) {
-            version = item.getVersion() + 1;
             inactiveReleaseItem(item);
         }
 
