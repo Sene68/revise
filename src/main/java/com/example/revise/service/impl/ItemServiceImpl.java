@@ -53,7 +53,7 @@ public class ItemServiceImpl implements ItemService {
         }
 
         try {
-            Item newItem = Item.revise(param, version);
+            Item newItem = Item.of(param);
             itemRepository.save(newItem);
         } catch (Exception e) {
             throw new IllegalArgumentException(e.getMessage());
