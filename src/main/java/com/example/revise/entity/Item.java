@@ -51,7 +51,7 @@ public class Item {
     private ItemStatus itemStatus;
 
 
-    public void active() { this.itemStatus = ItemStatus.RELEASE; }
+    public void release() { this.itemStatus = ItemStatus.RELEASE; }
     public void inactive() { this.itemStatus = ItemStatus.INACTIVE; }
     public void working() { this.itemStatus = ItemStatus.WORKING; }
 

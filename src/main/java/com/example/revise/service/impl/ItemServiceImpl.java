@@ -106,8 +106,8 @@ public class ItemServiceImpl implements ItemService {
         return item;
     }
 
-    private void reviseItem(Item item) {
-        item.active();
+    private void releaseItem(Item item) {
+        item.release();
     }
 
     private Item getReleasedItem(String itemCode, int version) {
