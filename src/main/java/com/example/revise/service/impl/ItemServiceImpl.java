@@ -114,6 +114,10 @@ public class ItemServiceImpl implements ItemService {
         return itemRepository.findByItemCodeAndVersion(itemCode, version).orElseThrow(() -> new IllegalArgumentException("item does not exist"));
     }
 
+    private Item getWorkingItem(String itemCode) {
+        return itemRepository.findByItemCodeAndItemStatus(itemCode, ItemStatus.WORKING).orElseThrow(() -> new IllegalArgumentException("item does not exist"));
+    }
+
     private <T, E> T convert(E e, Class<T> tClass) {
         return modelMapper.map(e, tClass);
     }
