@@ -65,7 +65,7 @@ public class ItemServiceImpl implements ItemService {
             Item latestItem = getLatestItem(param.getItemCode());
             inactiveReleaseItem(latestItem);
 
-            Item releaseItem = getReleasedItem(param.getItemCode(), param.getVersion());
+            Item releaseItem = getWorkingItem(param.getItemCode());
             releaseItem(releaseItem);
         } catch (Exception e) {
             throw new IllegalArgumentException(e.getMessage());
