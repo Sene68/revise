@@ -43,11 +43,11 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public void addItem(ItemData.AddItemParam param) {
         Assert.notNull(param, "item must be not null");
-        Item item = duplicated(param.getItemCode());
-
-        if (item != null) {
-            inactiveReleaseItem(item);
-        }
+//        Item item = duplicated(param.getItemCode());
+//
+//        if (item != null) {
+//            inactiveReleaseItem(item);
+//        }
 
         try {
             Item newItem = Item.of(param);
