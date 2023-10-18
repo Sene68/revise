@@ -43,11 +43,6 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public void addItem(ItemData.AddItemParam param) {
         Assert.notNull(param, "item must be not null");
-//        Item item = duplicated(param.getItemCode());
-//
-//        if (item != null) {
-//            inactiveReleaseItem(item);
-//        }
 
         try {
             Item newItem = Item.of(param);
@@ -99,7 +94,7 @@ public class ItemServiceImpl implements ItemService {
         Item item = null;
 
         try {
-            item = getLatestItem(itemCode);
+            item = getWorkingItem(itemCode);
         } catch (IllegalArgumentException ignored) {
         }
 
@@ -108,10 +103,6 @@ public class ItemServiceImpl implements ItemService {
 
     private void releaseItem(Item item) {
         item.release();
-    }
-
-    private Item getReleasedItem(String itemCode, int version) {
-        return itemRepository.findByItemCodeAndVersion(itemCode, version).orElseThrow(() -> new IllegalArgumentException("item does not exist"));
     }
 
     private Item getWorkingItem(String itemCode) {
