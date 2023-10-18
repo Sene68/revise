@@ -15,4 +15,6 @@ public interface ItemService {
     void addItem(ItemData.AddItemParam param);
 
     void reviseItem(ItemData.ReviseItemParam param);
+
+    void requestReviseItem();
 }

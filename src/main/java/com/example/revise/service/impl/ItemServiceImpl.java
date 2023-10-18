@@ -78,6 +78,11 @@ public class ItemServiceImpl implements ItemService {
         return itemDataList;
     }
 
+    @Override
+    public void requestReviseItem() {
+        
+    }
+
     private Item getLatestItem(String itemCode) {
         return itemRepository.findByItemCodeAndItemStatus(itemCode, ItemStatus.RELEASE).orElseThrow(() -> new IllegalArgumentException("item does not exist"));
     }
