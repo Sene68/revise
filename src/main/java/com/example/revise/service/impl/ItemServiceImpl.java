@@ -79,8 +79,8 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public void requestReviseItem() {
-        
+    public void requestReviseItem(ItemData.ReviseItemParam param) {
+
     }
 
     private Item getLatestItem(String itemCode) {
