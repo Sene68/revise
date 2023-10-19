@@ -80,7 +80,15 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public void requestReviseItem(ItemData.ReviseItemParam param) {
+        Assert.notNull(param, "item must be not null");
 
+        try {
+            Item item = itemRepository.findByItemCodeAndVersion(param.getItemCode(), param.getVersion()).orElseThrow(() -> new IllegalArgumentException("item does not exist"));
+            workingItem(item);
+
+        } catch (Exception e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
     }
 
     private Item getLatestItem(String itemCode) {
