@@ -15,4 +15,6 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
     Optional<Item> findByItemCodeAndItemStatus(String ItemCode, ItemStatus itemStatus);
 
     Optional<List<Item>> findAllByItemCode(String ItemCode);
+
+    Optional<Item> findByItemCodeOrderByVersionDesc(String itemCode);
 }
