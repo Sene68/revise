@@ -107,7 +107,7 @@ public class ItemServiceImpl implements ItemService {
         Item item = null;
 
         try {
-            item = getWorkingItem(itemCode);
+            item = itemRepository.findByItemCodeOrderByVersionDesc(itemCode).orElseThrow(() -> new IllegalArgumentException("item does not exist"));
         } catch (IllegalArgumentException ignored) {
         }
 
