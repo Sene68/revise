@@ -40,6 +40,7 @@ public class ItemData {
     public static class AddItemParam {
         private String itemName;
         private String itemCode;
+        private int version;
     }
 
     @Data
