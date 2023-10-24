@@ -49,4 +49,11 @@ public class ItemController {
 
         return new ItemData.ItemCustomRes<>(ApiResponse.OK, null, "OK");
     }
+
+    @PostMapping("/items/revise/request")
+    public ItemData.ItemCustomRes<String> requestReviseItem(@RequestBody ItemData.ReviseItemParam param) {
+        itemService.requestReviseItem(param);
+
+        return new ItemData.ItemCustomRes<>(ApiResponse.OK, null, "OK");
+    }
 }
