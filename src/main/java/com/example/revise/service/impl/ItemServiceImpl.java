@@ -44,6 +44,14 @@ public class ItemServiceImpl implements ItemService {
     public void addItem(ItemData.AddItemParam param) {
         Assert.notNull(param, "item must be not null");
 
+        int version = 1;
+        Item item = duplicated(param.getItemCode());
+
+        if (item != null)
+            version = item.getVersion();
+
+        param.setVersion(version);
+
         try {
             Item newItem = Item.of(param);
             itemRepository.save(newItem);
