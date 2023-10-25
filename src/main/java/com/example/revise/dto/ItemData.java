@@ -47,6 +47,15 @@ public class ItemData {
     @NoArgsConstructor
     @AllArgsConstructor
     @Builder
+    public static class UpdateItemParam {
+        private String itemName;
+        private String itemCode;
+    }
+
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Builder
     public static class ReviseItemParam {
         private String itemCode;
         private int version;
