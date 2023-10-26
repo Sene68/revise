@@ -51,7 +51,9 @@ public class Item {
 
     private ItemStatus itemStatus;
 
-
+    public void updateItemName(String itemName) {
+        this.itemName = itemName;
+    }
     public void release() { this.itemStatus = ItemStatus.RELEASE; }
     public void inactive() { this.itemStatus = ItemStatus.INACTIVE; }
     public void working() { this.itemStatus = ItemStatus.WORKING; }
