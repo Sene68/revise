@@ -87,6 +87,11 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    public void updateItem(ItemData.UpdateItemParam param) {
+        Assert.notNull(param, "item must be not null");
+    }
+
+    @Override
     public void requestReviseItem(ItemData.ReviseItemParam param) {
         Assert.notNull(param, "item must be not null");
 
