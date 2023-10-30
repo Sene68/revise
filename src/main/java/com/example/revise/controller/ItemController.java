@@ -50,6 +50,13 @@ public class ItemController {
         return new ItemData.ItemCustomRes<>(ApiResponse.OK, null, "OK");
     }
 
+    @PostMapping("/items/update")
+    public ItemData.ItemCustomRes<String> updateItem(@RequestBody ItemData.UpdateItemParam param) {
+        itemService.updateItem(param);
+
+        return new ItemData.ItemCustomRes<>(ApiResponse.OK, null, "OK");
+    }
+
     @PostMapping("/items/revise/request")
     public ItemData.ItemCustomRes<String> requestReviseItem(@RequestBody ItemData.ReviseItemParam param) {
         itemService.requestReviseItem(param);
