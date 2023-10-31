@@ -50,6 +50,7 @@ public class ItemData {
     public static class UpdateItemParam {
         private String itemName;
         private String itemCode;
+        private int version;
     }
 
     @Data
