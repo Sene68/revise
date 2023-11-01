@@ -89,16 +89,13 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public void updateItem(ItemData.UpdateItemParam param) {
         Assert.notNull(param, "item must be not null");
-        String itemCode = param.getItemCode();
         String itemName = param.getItemName();
 
-        List<Item> items = itemRepository.findAllByItemCode(itemCode).orElseThrow(() -> new IllegalArgumentException("item does not exist"));
+        Item item = itemRepository.findByItemCodeAndVersion(param.getItemCode(), param.getVersion()).orElseThrow(() -> new IllegalArgumentException("item does not exist"));
 
         try {
-            items.forEach(item -> {
                 item.updateItemName(itemName);
                 itemRepository.save(item);
-            });
         } catch (Exception e) {
             throw new IllegalArgumentException(e.getMessage());
         }
